@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Psychic Game</title>
+</head>
+<body>
+
+<h1>The Psychic Game</h1>
+<div id="game">
+<div><p>Guess what letter I'm thinking of</p></div>
+<div id="wins"><p>Wins: </p></div>
+<div id="losses"><p>Losses: </p></div>
+<div id="guessesLeft">Guesses Left: </div>
+<div id="guess"><p>Your Guesses so far: </p></div>
+</div>
+	<script>
+		var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+		var wins = 0
+		var losses = 0
+		var guessesLeft = 12
+		//document.getElementById('guessesLeft').innerText = guessesLeft
+		 
+		
+		var computerGuess = alphabet[Math.floor(Math.random()*alphabet.length)]
+		console.log(computerGuess)
+
+	document.onkeyup = function(event){
+		
+			var guess = event.key;
+			var guessSoFar = document.createElement('guessSoFar');
+			var currentGuess = document.createTextNode(guess)
+			guessSoFar.appendChild(currentGuess)
+			document.getElementById('guess')
+			console.log(guess)
+			
+			if (guess!==computerGuess){
+				
+				document.getElementById('guess').innerText = 'Your Guesses so far: ' + guess;
+				//append guesses to the list
+				
+				guessesLeft--
+				document.getElementById('guessesLeft').innerHTML = 'Guesses Left: ' + guessesLeft;
+				console.log(guessesLeft)
+				
+				
+			}
+
+				if (guessesLeft===0){
+				losses++
+				document.getElementById('losses').innerHTML = 'Losses: ' + losses;
+				console.log(losses)
+				alert('Game Over')
+				//game ends
+					
+			}
+
+			else if (guess===computerGuess){
+					wins++
+					document.getElementById('wins').innerHTML = 'Wins: ' + wins;
+					console.log(wins)
+					alert('You win!')	
+					//game ends
+				}
+		
+		
+		}		
+	
+	</script>
+</body>
+</html>
